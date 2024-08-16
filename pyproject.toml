@@ -1,0 +1,22 @@
+[build-system]
+requires = ["flit_core >= 3.4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "jutils"
+version = "1.0"
+authors = [{name = "Jedrzej Orbik"}]
+description = "My utils"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "imageio",
+]
+
+[project.optional-dependencies]
+dev = ["pre-commit", "pytest"]
+test = ["pytest"]
+
+[tool.ruff.lint]
+ignore = ["C901", "E501", "E741", "F402", "F823", "E731"]
+select = ["C", "E", "F", "I", "W"]
