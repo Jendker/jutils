@@ -20,3 +20,19 @@ def numpy_to_mp4_blob(images: np.ndarray, fps: float = 30.0) -> bytes:
     binary_stream.close()
 
     return binary_blob
+
+
+def mp4_blob_to_numpy(binary_blob: bytes) -> np.ndarray:
+    # Create an in-memory binary stream from the MP4 binary blob
+    binary_stream = io.BytesIO(binary_blob)
+
+    # Open the video file from the binary stream
+    reader = imageio.get_reader(binary_stream, format="mp4")
+
+    # Read all frames and convert them to a list of NumPy arrays
+    frames = []
+    for frame in reader:
+        frames.append(frame)
+
+    reader.close()
+    return np.array(frames)
